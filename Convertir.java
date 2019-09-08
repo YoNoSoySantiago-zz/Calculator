@@ -1,13 +1,13 @@
 public class Convertir{
-             public static double Binario(int num1){
+             public static String binario(int num1){
 				 String result = ""; 
 				 while(num1 > 0){
 					 result = (num1 % 2) + result;
 					 num1 =(num1/2);
 				 }
-				 return Double.parseDouble(result);
+				 return result;
 			 }
-			 public static String Hexadecimal(int num1){
+			 public static String hexadecimal(int num1){
 				 String result = "";
 				 int division,residuo;
 				 if(num1 < 16){
@@ -16,10 +16,10 @@ public class Convertir{
 					 do{
 					 division = num1/16;
 					 residuo = num1%16;
-					 result = result + decToHex(residuo);
+					 result = decToHex(residuo) + result;
 					 num1 = division;
 					 }while(num1 >= 16);
-					 result = decToHex(num1) + result;
+					 result = decToHex(num1) + result ;
 				 }
 				 return result;
 			 }
@@ -28,7 +28,7 @@ public class Convertir{
 				 if(num1 < 0){
 				 result = "0";}
 				 else if(num1 >= 0 && num1 <= 9){
-					 result = ""+result;
+					 result = String.valueOf(num1) + result;
 				 }else if(num1 >= 10 && num1 <= 15){
 					 switch (num1){
 						 case 10: 
@@ -51,10 +51,11 @@ public class Convertir{
 				    }
 					 
 				 }
+				 System.out.println(num1);
 				 return result;
 			 }
 			 public static int hexToDec(String hex){
-				 int result = 0;
+				 int result = 0,aux = 0;
 				 int cadena[]; 
 				 int longitud = hex.length();
 				 cadena = new int[longitud];
@@ -87,13 +88,21 @@ public class Convertir{
 					 }
 				 }
 				 for(int i = 0; i < cadena.length; i++){
+					 aux = cadena[i];
 					 result = (int) ((cadena[i]* Operation2.potenciaN(16,(cadena.length-(i+1))))+ result);
+					 System.out.println(result);
+					 System.out.println(aux);
 				 }
 				 return result;
 				 
 			 }
-			 public static  int biToDec(int binario[]){
+			 public static  int biToDec(String bin){
 				 int result = 0, aux;
+				 char[] binarioC = bin.toCharArray();
+				 int[] binario = new int[binarioC.length];
+				 for(int i = 0;i < binario.length;i++){
+					 binario[i] = Integer.valueOf(Character.toString(binarioC[i]));
+				 }
 				 for(int i = 0;i < binario.length; i++){
 					 aux = (int) Operation2.potenciaN(2,(binario.length-(i+1)));
 					 result = (binario[i]*aux) + result;

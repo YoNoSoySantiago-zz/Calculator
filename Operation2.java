@@ -66,10 +66,29 @@ public class Operation2{
 		  
 		 public static double logBaseN(int num1, int base){
 			 double result;
-			result = Operation1.logBase10(num1) / Operation1.logBase10(base);
-			 
-			 return result;
-		 }
+				 String numero = "";
+				 int aux = 0;
+				 
+				for(int i = 1; num1 >= base; i++){
+				num1 /= base;
+				aux = i;
+				}
+				numero = String.valueOf(aux) + ".";
+				for(int i = 0;i <= 5;i++){
+					num1 = (short)potenciaN(num1,base);
+					if(num1 < base){
+						aux = 0;
+					}
+					for(int j = 1; num1 >= base; j++){
+						num1 = num1/base;
+						aux = j;
+					}
+					numero = numero + String.valueOf(aux);
+				}
+				result = Double.parseDouble(numero);
+				 return result;
+			 }
+		 
 		
 		
 		/**
@@ -90,12 +109,13 @@ public class Operation2{
 		 @return este numero devuelve la potencia decimal del parametro num1 elvado al parametro n
 		 */
 		 public static double potenciaN(double num1, int n){
-			 double result = 1;
-			 for(int i = 1;i < n;i++){
-				 num1 += num1*num1;
-				 result = num1;
+			 double result=num1, aux = 0;
+			 for(int i = 2;i <= n;i++){
+				 result = (result*num1);
 			 } 
-			 
+			 if(n == 0){
+				 result = 1;
+			 }
 			 return result;
 		 }
 		 

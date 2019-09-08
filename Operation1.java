@@ -8,8 +8,18 @@ public class Operation1{
 		 */
 		 public static double seno(double num1){
 			 double result = 0;
-			 for(int i = 0;i < 5; i++){
-				 result += (Operation2.potenciaN(num1,(2*i + 1)))/factorial(2*i + 1);
+			 for(int i = 1;i <= 7; i++){
+				int fact = 1;
+				int j = 1;
+				while(j<=(1+(2*(i-1)))){
+					fact = fact*j;
+					j++;
+				}
+				if(i % 2 == 0){
+					result = result - (Operation2.potenciaN(num1,(1+(2*(i-1))))/fact);
+				}else{result = result + (Operation2.potenciaN(num1,(1+(2*(i-1))))/fact);
+					
+				}
 			 }
 			 return result;
 		 }
@@ -20,12 +30,23 @@ public class Operation1{
 		 @return este metodo retorna un numero decimal que representa el valor del coseno de un numero
 		 */
 		 public static double coseno(double num1){
-		 double result;
-			 num1 = 1 - (seno(num1)*seno(num1));
-				 
-				 result = raiz(num1);
-				 return result;	 
+		 
+			 double result = 0;
+			 for(int i = 1;i <= 7; i++){
+				int fact = 1;
+				int j = 1;
+				while(j<=((2*(i-1)))){
+					fact = fact*j;
+					j++;
+				}
+				if(i % 2 == 0){
+					result = result - (Operation2.potenciaN(num1,((2*(i-1))))/fact);
+				}else{result = result + (Operation2.potenciaN(num1,((2*(i-1))))/fact);
+					
+				}
 			 }
+			 return result;
+		 }
 			 public static double tangente(double num1){
 				 double result;
 				 result = seno(num1)/coseno(num1);
@@ -55,18 +76,25 @@ public class Operation1{
 			 public static double logBase10(double num1){
 				 double result;
 				 String numero = "";
-				 while(num1 >= 10){
-					 num1 = num1/10;
-				 }
-				 numero = String.valueOf(num1) +",";
-				 for(int i = 0;i < 5; i++){
-					 while(num1 >= 10){
-						 num1 = num1/10;
-					 }
-					 numero = numero + String.valueOf(num1);
-					 num1 = (int) Operation2.potenciaN(num1,10);
-				 }
-				 result = Integer.parseInt(numero);
+				 int aux = 0;
+				 
+				for(int i = 1; num1 >= 10; i++){
+				num1 /= 10;
+				aux = i;
+				}
+				numero = String.valueOf(aux) + ".";
+				for(int i = 0;i <= 5;i++){
+					num1 = Operation2.potenciaN(num1,10);
+					if(num1 < 10){
+						aux = 0;
+					}
+					for(int j = 1; num1 >= 10; j++){
+						num1 = num1/10;
+						aux = j;
+					}
+					numero = numero + String.valueOf(aux);
+				}
+				result = Double.parseDouble(numero);
 				 return result;
 			 }
 			 public static double[] memoria(double num1,double memoria[]) {
@@ -82,6 +110,6 @@ public class Operation1{
 				 return result;
 				 
 			 }
-			 
+
 			 
 	 }
