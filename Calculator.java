@@ -3,15 +3,17 @@ import java.util.Scanner;
 		 // operaciones con dos valores
 		 public static void main(String[] args){
 			 double[] memoria = new double[10];
-			 char letter ='0';
+			 char letter ='0',numLetter = '0';
 			 int system = 2,operation2 = 0;
-			 String operation;
+			 String operation,auxNum;
 			 double num1 = 0,num2 = 0,next = 0;
-			 double result = 0;
+			 double result = 0, auxMemoria,auxMemoria2 = 0;
 			 String resultS = "",numS="",numS2 = "";
 			 boolean continued = false;
 			 Scanner S = new Scanner(System.in);
-			 System.out.println("La calculadora se inisializo en modo Normal, para cambiar de modo presiona # despues de el resultado");
+			 System.out.println("La calculadora se inisializo en modo Normal, para cambiar de modo presiona # despues de el resultado \n"+
+			 "recuerde usar E. para representar al Numero Pi (π) \n"+
+			 "Tambien puedes abrir la memoria usando B. (solo puedes usarla en Notacion decimal");
 			 do{
 				letter = 'g';	 
 			 System.out.println("escoja la operacion a realizar \n"+
@@ -35,7 +37,6 @@ import java.util.Scanner;
 			 "17. Convertir a Decimal \n"+
 			 "18. Convertir a Grados \n" +
 			 "19. Convertir a Radianes \n" +
-			 "E. Numero Pi (π)\n"+
 			 "F. Apagar la calculadora \n");
 			 
 			 operation = S.next();
@@ -47,12 +48,9 @@ import java.util.Scanner;
 				 continued = !continued;
 			 }if(letter == 'A'){
 				 System.out.println("Seleccione el Sistema de notaciondeseada \n"+
-				 "A. Volver al menu principal \n"+
-				 "1. Sistema Binario \n"+
-				 "2. Sistema Decimal \n"+
-				 "3. Sistema Hexadeciamal \n"+
-				 "4. Sistema en Grados \n"+
-				 "5. Sistema en Radianes");
+				 "1. Sistema de notacion Binaria \n"+
+				 "2. Sistema de notacion Decimal \n"+
+				 "3. Sistema de notacion Hexadeciamal");
 				 system = S.nextInt();
 			 }	 
 				 if(letter != 'F' && letter != 'A' && letter != 'B' && letter != 'C' && letter != 'D' && letter != 'E' && letter != '#'){
@@ -66,31 +64,71 @@ import java.util.Scanner;
 								num1 = result;
 							}else{
 						numS = S.next();
-							num1 = Convertir.biToDec(numS);}//repetir esto
+							num1 = Convertir.biToDec(numS);
+							}//repetir esto
 						
 						System.out.println(" digite el valor con el que va a operarS");
 						numS = S.next();
 						num2 = Convertir.biToDec(numS);
-						}
-						else if(system == 3){
+						
+					    }else if(system == 3){
+							if(next == 1){
+								num1 = result;
+							}else{
 							System.out.println("porfavor ingrese el primer valor en formato Hexadecimal");
 						numS = S.next();
 						num1 = Convertir.hexToDec(numS);
-						
+							}
 						System.out.println(" digite el valor con el que va a operar");
 						numS = S.next();
 						num2 = Convertir.hexToDec(numS);
+							
 						}else{
+							if(next == 1){
+							num1 = result;
+							}else{
 							System.out.println("porfavor ingrese el primer valor en formato decimal");
-						num1 = S.nextDouble();
+							auxNum = S.next();
+							auxNum = auxNum.toUpperCase();
+							if(auxNum.length() > 0){
+								numLetter = auxNum.charAt(0);
+							}
+							if(numLetter == 'B'){
+							num1 = Convertir.memoria(memoria);
+							}else{
+								num1 = Double.parseDouble(auxNum);
+							}
+						
+							}
 						    System.out.println("digite el valor con el que va a operar");
-						num2 = S.nextDouble();
-					
+							auxNum = S.next();
+							auxNum = auxNum.toUpperCase();
+							if(auxNum.length() > 0){
+								numLetter = auxNum.charAt(0);
+							}
+							if(numLetter == 'B'){
+							num2 = Convertir.memoria(memoria);
+							}else{
+						num2 = Double.parseDouble(auxNum);
+							}
 						}
 						
 					}else if(operation2 != 17){
+						if(next == 1){
+							num1 = result;
+						}else{
 					 System.out.println("acontinuacion digite el valor a operar");
-						num1 = S.nextInt();
+					 auxNum = S.next();
+							auxNum = auxNum.toUpperCase();
+							if(auxNum.length() > 0){
+								numLetter = auxNum.charAt(0);
+							}
+							if(numLetter == 'B'){
+							num1 = Convertir.memoria(memoria);
+							}else{
+						num1 = Double.parseDouble(auxNum);
+							}
+						}
 					}else{
 					 System.out.println("acontinuacion digite el valor a operar");
 						numS = S.next();
@@ -136,7 +174,8 @@ import java.util.Scanner;
 					result = Operation1.tangente(num1);
 					break;
 					case 13:
-					result = Operation1.base10(num1);
+					resultS = Convertir.base10(num1);
+					result = num1; 
 					break;
 					case 14:
 					result = Operation1.factorial((int)num1);
@@ -153,7 +192,7 @@ import java.util.Scanner;
 					}else if(system == 1){
 					result = Convertir.biToDec(numS);	
 					}else{
-						result = num1;
+					result = Integer.parseInt(numS);
 					}
 					break;
 					case 18:
@@ -168,17 +207,38 @@ import java.util.Scanner;
 					}else if(system == 3 && operation2 != 17){
 						resultS = Convertir.hexadecimal((int)result);
 					}
-					if(operation2 == 15 || operation2 == 16 || system == 1 && operation2 != 17 || system == 3 && operation2 != 17){
-						 System.out.println("el resultado es igual a "+resultS);}
+					if(operation2 == 15 || operation2 == 16 || operation2 == 13 || system == 1 && operation2 != 17  || system == 3 && operation2 != 17 ){
+						 System.out.println("el resultado es igual a "+resultS);
+						 for(int i = 0; i < memoria.length; i++){
+							 auxMemoria = memoria[i];
+							 memoria[i] = auxMemoria2;
+							 auxMemoria2 = auxMemoria;
+						 }
+						 if(operation2 == 15 || operation2 == 16 || operation2 == 13){
+							 memoria[0] = num1;
+						 }else if(system == 1){
+							 memoria[0] = Convertir.biToDec(resultS);
+						 }else{
+							 memoria[0] = Convertir.hexToDec(resultS);
+						 }
+						 
+						 }
 					else{
-						 System.out.println("el resultado es igual a "+result);}
+						 System.out.println("el resultado es igual a "+result);
+						 for(int i = 0; i < memoria.length; i++){
+							 auxMemoria = memoria[i];
+							 memoria[i] = auxMemoria2;
+							 auxMemoria2 = auxMemoria;
+						 }
+						 memoria[0] = result;
+						 }
 				
-					}if(continued == false && letter != 'F'){
+					}if(continued == false && letter != 'F' && letter != 'A'){
 			System.out.println("¿desea continuar? \n"+
 			"1. Si \n"+
 			"2. NO");
 			next = S.nextInt();
-				 }else{
+				 }else if(letter != 'A'){
 					 next = 1;
 				 }
 				

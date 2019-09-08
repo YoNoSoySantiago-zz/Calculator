@@ -75,7 +75,7 @@ public class Operation2{
 				}
 				numero = String.valueOf(aux) + ".";
 				for(int i = 0;i <= 5;i++){
-					num1 = (short)potenciaN(num1,base);
+					num1 = (int)potenciaN(num1,base);
 					if(num1 < base){
 						aux = 0;
 					}
