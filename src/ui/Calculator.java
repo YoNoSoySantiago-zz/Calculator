@@ -1,3 +1,4 @@
+// Clase main S
 import java.util.Scanner;
      public class Calculator{
 		 // operaciones con dos valores
@@ -68,7 +69,7 @@ import java.util.Scanner;
 							num1 = Convertir.biToDec(numS);
 							}//repetir esto
 						
-						System.out.println(" digite el valor con el que va a operarS");
+						System.out.println(" digite el valor con el que va a operar (Este es el valor de N es las operaciones que lo indican)");
 						numS = S.next();
 						num2 = Convertir.biToDec(numS);
 						
@@ -80,7 +81,7 @@ import java.util.Scanner;
 						numS = S.next();
 						num1 = Convertir.hexToDec(numS);
 							}
-						System.out.println(" digite el valor con el que va a operar");
+						System.out.println(" digite el valor con el que va a operar (Este es el valor de N es las operaciones que lo indican)");
 						numS = S.next();
 						num2 = Convertir.hexToDec(numS);
 							
@@ -103,7 +104,7 @@ import java.util.Scanner;
 							}
 						
 							}
-						    System.out.println("digite el valor con el que va a operar");
+						    System.out.println("digite el valor con el que va a operar (Este es el valor de N es las operaciones que lo indican)");
 							auxNum = S.next();
 							auxNum = auxNum.toUpperCase();
 							if(auxNum.length() > 0){

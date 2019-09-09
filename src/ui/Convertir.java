@@ -1,4 +1,5 @@
 import java.util.Scanner;
+// esta clase es para hacer todas las transformaciones 
 public class Convertir{
 /**
 <p> des: <p> this method receives an integer in decimal format which will be transformed into binary using the method of division between two

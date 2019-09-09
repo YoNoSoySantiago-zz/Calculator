@@ -1,3 +1,4 @@
+// esta clase tiene los metodos que requieren de solo un parametro para operar
 public class Operation1{
 		 // sucesion de Tylor
 /**

@@ -1,3 +1,4 @@
+// esta clase contiene todas los metodos que requieren dos parametros para operar
 public class Operation2{
 /**
 <p> des: <p> receives two numbers in decimal format, this method allows you to add two numbers and return your result
